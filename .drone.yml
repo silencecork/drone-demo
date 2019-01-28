@@ -13,9 +13,10 @@ pipeline:
     rm: true
     target: /home/ec2-user/data/drone-demo
     source: 
-      - "*.js"
-      - "*.json"
-      - "test/*.json"
+      - "*"
+      #- "*.js"
+      #- "*.json"
+      #- "test/*.json"
     when:
       branch: master
       local: true
