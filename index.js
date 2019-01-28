@@ -4,9 +4,11 @@ var app = express();
 
 app.get('/', function (req, res) {
   var myip = ip.address()
-  res.send('Hello World!' + myip);
+  res.send('Hello World! ' + myip);
 });
 
-app.listen(3000, function () {
+var server = app.listen(3000, function () {
   console.log('Example app listening on port 3000!');
 });
+
+module.exports = server

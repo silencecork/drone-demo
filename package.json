@@ -10,6 +10,11 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.4",
-    "ip": "^1.1.5"
+    "ip": "^1.1.5",
+    "supertest": "^3.4.2"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0",
+    "should": "^13.2.3"
   }
 }
