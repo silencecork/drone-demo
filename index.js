@@ -1,8 +1,10 @@
 var express = require('express');
+var ip = require("ip");
 var app = express();
 
 app.get('/', function (req, res) {
-  res.send('Hello World!');
+  var myip = ip.address()
+  res.send('Hello World!' + myip);
 });
 
 app.listen(3000, function () {
