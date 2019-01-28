@@ -1,0 +1,15 @@
+pipeline:
+  scp:
+    image: appleboy/drone-scp
+    host: 54.199.220.164
+    port: 22
+    secrets: [ username, password ]
+    rm: true
+    target: /home/ec2-user/data/drone-demo
+    source: 
+      - "*.js"
+      - "*.json"
+    when:
+      branch: master
+      local: true
+    
