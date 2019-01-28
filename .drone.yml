@@ -2,7 +2,7 @@ pipeline:
   scp:
     image: appleboy/drone-scp
     host: 
-      - 54.199.220.164
+      - 52.197.108.200
     port: 22
     username: ec2-user
     secrets: [ scp_key_path ]
