@@ -23,15 +23,11 @@ pipeline:
 
   install:
     image: appleboy/drone-ssh
-    host:
-      - 52.197.108.200
-    port: 22
+    host: 52.197.108.200
     username: ec2-user
     secrets: 
       - source: password
-        target: scp_password
-      - source: username
-        target: scp_username
+        target: ssh_password
     scripts:
       - cd /home/ec2-user/data/drone-demo
       - npm install
