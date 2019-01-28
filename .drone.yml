@@ -28,7 +28,7 @@ pipeline:
     secrets: 
       - source: password
         target: ssh_password
-    scripts:
+    script:
       - echo "test"
       - echo $PWD
       - cd /home/ec2-user/data/drone-demo
