@@ -5,9 +5,7 @@ pipeline:
       - 54.199.220.164
     port: 22
     username: ec2-user
-    secrets: 
-      - source: key_path
-        target: ssh_key_path
+    secrets: [ key_path ]
     rm: true
     target: /home/ec2-user/data/drone-demo
     source: 
