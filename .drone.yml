@@ -13,8 +13,8 @@ pipeline:
     rm: true
     target: /home/ec2-user/data/drone-demo
     source: 
-      - "/Users/chih-tingliu/data/drone-demo/*.js"
-      - "/Users/chih-tingliu/data/drone-demo/*.json"
+      - "*.js"
+      - "*.json"
     when:
       branch: master
       local: true
