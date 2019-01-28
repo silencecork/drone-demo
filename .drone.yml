@@ -29,9 +29,10 @@ pipeline:
       - source: password
         target: ssh_password
     script:
-      - echo "test"
-      - echo $PWD
+      - pwd
       - cd /home/ec2-user/data/drone-demo
-      - echo $PWD
+      - pwd
+      - echo "start to install"
       - npm install
+      - mocha test/api.js
     
