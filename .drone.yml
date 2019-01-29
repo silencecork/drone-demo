@@ -43,4 +43,5 @@ pipeline:
       - cd /home/ec2-user/data/drone-demo
       - pwd
       - echo "start service..."
-      - node index.js    
+      - node index.js
+      - exit 0    
