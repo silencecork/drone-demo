@@ -31,7 +31,7 @@ pipeline:
       branch: master
       local: true
 
-  run:
+  ssh:
     image: appleboy/drone-ssh
     host: 13.230.240.54
     username: ec2-user
@@ -39,9 +39,11 @@ pipeline:
       - source: key
         target: ssh_key
     script:
-      - echo "kill all node service"
       - cd /home/ec2-user/data/drone-demo
-      - killall node
+      - echo "install forever ..."
+      - npm install -g forever
+      - echo "kill running service ..."
+      - forever stop 0
       - echo "start service..."
-      - node index.js
+      - forever start index.js
       - exit 0    
