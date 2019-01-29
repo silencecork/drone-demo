@@ -29,7 +29,7 @@ pipeline:
     source: 
       - "*.*"
       - "test/*.*"
-      - "node_modules"
+      #- "node_modules"
       #- "*.js"
       #- "*.json"
       #- "test/*.json"
@@ -49,6 +49,8 @@ pipeline:
       - /Users/chih-tingliu/.ssh:/ssh
     script:
       - cd /home/ec2-user/data/drone-demo
+      - echo "npm install"
+      - npm install
       #- echo "install forever ..."
       #- npm install -g forever
       - echo "kill running service ..."
