@@ -36,8 +36,8 @@ pipeline:
     host: 52.197.108.200
     username: ec2-user
     secrets: 
-      - source: password
-        target: ssh_password
+      - source: key
+        target: ssh_key
     script:
       - pwd
       - cd /home/ec2-user/data/drone-demo
