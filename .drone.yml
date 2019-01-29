@@ -16,7 +16,7 @@ pipeline:
     secrets:
       - source: user_name
         target: scp_username
-      - source: key
+      - source: key2
         target: scp_key
     rm: true
     target: /home/ec2-user/data/drone-demo
@@ -36,7 +36,7 @@ pipeline:
     host: 13.230.240.54
     username: ec2-user
     secrets: 
-      - source: key
+      - source: key2
         target: ssh_key
     script:
       - cd /home/ec2-user/data/drone-demo
