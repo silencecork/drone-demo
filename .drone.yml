@@ -46,4 +46,15 @@ pipeline:
       - forever stop 0
       - echo "start service..."
       - forever start index.js
-      - exit 0    
+      - exit 0
+    when:
+      branch: master
+      local: true
+
+  notify:
+    image: plugins/slack
+    webhook: https://hooks.slack.com/services/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
+    channel: gomaji_shell
+    username: Drone CI
+    when:
+      status: [ success, failure ]
