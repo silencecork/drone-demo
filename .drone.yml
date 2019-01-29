@@ -51,7 +51,7 @@ pipeline:
       branch: master
       local: true
 
-  notify: 
+  notify:
     image: plugins/slack
     webhook: https://hooks.slack.com/services/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
     channel: gomaji_shell
