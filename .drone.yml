@@ -13,9 +13,11 @@ pipeline:
   scp:
     image: appleboy/drone-scp
     host: 
-      - 13.230.240.54
+      #- 13.230.240.54
     port: 22
     secrets:
+      - source: host
+        target: scp_host
       - source: user_name
         target: scp_username
       #- source: key
@@ -38,9 +40,13 @@ pipeline:
 
   ssh:
     image: appleboy/drone-ssh
-    host: 13.230.240.54
-    username: ec2-user
-    secrets: 
+    #host: 13.230.240.54
+    #username: ec2-user
+    secrets:
+      - source: host
+        target: ssh_host
+      - source: user_name
+        target: ssh_username
       #- source: key
       #  target: ssh_key
       - source: key_path
