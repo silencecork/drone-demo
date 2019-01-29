@@ -39,9 +39,9 @@ pipeline:
       - source: key
         target: ssh_key
     script:
-      - pwd
+      - echo "kill all node service"
       - cd /home/ec2-user/data/drone-demo
-      - pwd
+      - killall node
       - echo "start service..."
       - node index.js
       - exit 0    
