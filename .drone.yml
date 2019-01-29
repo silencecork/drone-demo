@@ -64,9 +64,7 @@ pipeline:
   notify:
     image: plugins/slack
     channel: gomaji_shell
-    secrets:
-      - source: slack_webhook
-        target: webhook
+    secrets: [ slack_webhook ]
     username: Drone CI
     when:
       status: [ success, failure ]
