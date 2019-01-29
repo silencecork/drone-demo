@@ -7,21 +7,23 @@ pipeline:
       - npm install
       - npm install -g mocha
       - mocha test/api.js
+
   scp:
     image: appleboy/drone-scp
     host: 
       - 13.230.240.54
     port: 22
-    secrets: 
+    secrets:
+      - source: user_name
+        target: scp_username
       - source: key_path
         target: scp_key_path
-      - source: username
-        target: scp_username
     rm: true
     target: /home/ec2-user/data/drone-demo
     source: 
       - "*.*"
       - "test/*.*"
+      - "node_modules"
       #- "*.js"
       #- "*.json"
       #- "test/*.json"
@@ -29,7 +31,7 @@ pipeline:
       branch: master
       local: true
 
-  install:
+  run:
     image: appleboy/drone-ssh
     host: 52.197.108.200
     username: ec2-user
@@ -40,7 +42,6 @@ pipeline:
       - pwd
       - cd /home/ec2-user/data/drone-demo
       - pwd
-      - echo "start to install"
-      - npm install
-      - mocha test/api.js
+      - echo "start service..."
+      - node index.js
     
