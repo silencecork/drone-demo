@@ -1,8 +1,16 @@
 pipeline:
+  install:
+    image: node:10.15
+    commands:
+      - node -v
+      - npm -v
+      - npm install
+      - npm install -g mocha
+      - mocha test/api.js
   scp:
     image: appleboy/drone-scp
     host: 
-      - 52.197.108.200
+      - 13.230.240.54
     port: 22
     secrets: 
       - source: password
