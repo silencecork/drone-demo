@@ -16,8 +16,8 @@ pipeline:
     secrets:
       - source: user_name
         target: scp_username
-      - source: key_path
-        target: scp_key_path
+      - source: key
+        target: scp_key
     rm: true
     target: /home/ec2-user/data/drone-demo
     source: 
