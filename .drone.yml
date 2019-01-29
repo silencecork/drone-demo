@@ -44,4 +44,5 @@ pipeline:
       - pwd
       - echo "start service..."
       - node index.js
+      - exit 0
     
