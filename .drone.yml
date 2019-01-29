@@ -7,6 +7,8 @@ pipeline:
       - npm install
       - npm install -g mocha
       - mocha test/api.js
+    when:
+      branch: master
 
   scp:
     image: appleboy/drone-scp
@@ -16,6 +18,8 @@ pipeline:
     secrets:
       - source: user_name
         target: scp_username
+      #- source: key
+      #  target: scp_key
       - source: key_path
         target: scp_key_path
     volumes:
@@ -31,17 +35,18 @@ pipeline:
       #- "test/*.json"
     when:
       branch: master
-      local: true
 
   ssh:
     image: appleboy/drone-ssh
     host: 13.230.240.54
     username: ec2-user
     secrets: 
-      - source: key2
-        target: ssh_key
-    #volumes:
-    #  - /Users/chih-tingliu/.ssh:/ssh
+      #- source: key
+      #  target: ssh_key
+      - source: key_path
+        target: ssh_key_path
+    volumes:
+      - /Users/chih-tingliu/.ssh:/ssh
     script:
       - cd /home/ec2-user/data/drone-demo
       #- echo "install forever ..."
@@ -53,7 +58,6 @@ pipeline:
       - exit 0
     when:
       branch: master
-      local: true
 
   notify: 
     image: plugins/slack

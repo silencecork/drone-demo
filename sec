@@ -1,0 +1,2 @@
+key_path=/ssh/drone_id_rsa
+user_name=ec2-user
