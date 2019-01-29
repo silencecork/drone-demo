@@ -13,8 +13,8 @@ pipeline:
       - 13.230.240.54
     port: 22
     secrets: 
-      - source: password
-        target: scp_password
+      - source: key_path
+        target: scp_key_path
       - source: username
         target: scp_username
     rm: true
