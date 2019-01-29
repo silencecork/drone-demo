@@ -16,8 +16,10 @@ pipeline:
     secrets:
       - source: user_name
         target: scp_username
-      - source: key2
-        target: scp_key
+      - source: key_path
+        target: scp_key_path
+    volumes:
+      - /Users/chih-tingliu/.ssh:/ssh
     rm: true
     target: /home/ec2-user/data/drone-demo
     source: 
