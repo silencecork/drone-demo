@@ -40,8 +40,8 @@ pipeline:
         target: ssh_key
     script:
       - cd /home/ec2-user/data/drone-demo
-      - echo "install forever ..."
-      - npm install -g forever
+      #- echo "install forever ..."
+      #- npm install -g forever
       - echo "kill running service ..."
       - forever stop 0
       - echo "start service..."
