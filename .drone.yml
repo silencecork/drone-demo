@@ -33,7 +33,7 @@ pipeline:
 
   run:
     image: appleboy/drone-ssh
-    host: 52.197.108.200
+    host: 13.230.240.54
     username: ec2-user
     secrets: 
       - source: key
@@ -43,6 +43,4 @@ pipeline:
       - cd /home/ec2-user/data/drone-demo
       - pwd
       - echo "start service..."
-      - node index.js
-      - exit 0
-    
+      - node index.js    
