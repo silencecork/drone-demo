@@ -40,8 +40,8 @@ pipeline:
     secrets: 
       - source: key2
         target: ssh_key
-    volumes:
-      - /Users/chih-tingliu/.ssh:/ssh
+    #volumes:
+    #  - /Users/chih-tingliu/.ssh:/ssh
     script:
       - cd /home/ec2-user/data/drone-demo
       #- echo "install forever ..."
