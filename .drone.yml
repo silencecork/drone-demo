@@ -8,64 +8,17 @@ pipeline:
       - npm install -g mocha
       - mocha test/api.js
     when:
-      branch: master
+      branch: docker
 
-  scp:
-    image: appleboy/drone-scp
-    host: 
-      #- 13.230.240.54
-    port: 22
-    secrets:
-      - source: host
-        target: scp_host
-      - source: user_name
-        target: scp_username
-      #- source: key
-      #  target: scp_key
-      - source: key_path
-        target: scp_key_path
-    volumes:
-      - /Users/chih-tingliu/.ssh:/ssh
-    rm: true
-    target: /home/ec2-user/data/drone-demo
-    source: 
-      - "*.*"
-      - "test/*.*"
-      #- "node_modules"
-      #- "*.js"
-      #- "*.json"
-      #- "test/*.json"
+  build_image:
+    image: plugins/docker
+    pull: true
+    repo: liu71101/drone-demo
+    tags: [ latest, 1.0 ]
+    dockerfile: dockerfile
+    secrets: [ docker_username, docker_password ]
     when:
-      branch: master
-
-  ssh:
-    image: appleboy/drone-ssh
-    #host: 13.230.240.54
-    #username: ec2-user
-    secrets:
-      - source: host
-        target: ssh_host
-      - source: user_name
-        target: ssh_username
-      #- source: key
-      #  target: ssh_key
-      - source: key_path
-        target: ssh_key_path
-    volumes:
-      - /Users/chih-tingliu/.ssh:/ssh
-    script:
-      - cd /home/ec2-user/data/drone-demo
-      - echo "npm install"
-      - npm install
-      #- echo "install forever ..."
-      #- npm install -g forever
-      - echo "kill running service ..."
-      - forever stop 0
-      - echo "start service..."
-      - forever start index.js
-      - exit 0
-    when:
-      branch: master
+      branch: docker
 
   notify:
     image: plugins/slack
