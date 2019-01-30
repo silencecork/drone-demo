@@ -14,7 +14,10 @@ pipeline:
     image: plugins/docker
     pull: true
     repo: liu71101/drone-demo
-    tags: ${DRONE_COMMIT}
+    auto_tag: true
+    tags: 
+      - latest
+      - "2.0"
     dockerfile: Dockerfile
     secrets: [ docker_username, docker_password ] 
     when:
@@ -33,7 +36,7 @@ pipeline:
     volumes:
       - /Users/chih-tingliu/.ssh:/ssh
     rm: true
-    target: /home/ec2-user/
+    target: /home/ec2-user/drone-demo/
     source: 
       - docker-compose.yml
     when:
@@ -51,7 +54,9 @@ pipeline:
     volumes:
       - /Users/chih-tingliu/.ssh:/ssh
     script:
+      - cd /home/ec2-user/drone-demo/
       - echo "run docker"
+      - docker-compose pull
       - docker-compose restart
       - exit 0
     when:
@@ -64,3 +69,4 @@ pipeline:
     username: Drone CI
     when:
       status: [ success, failure ]
+      branch: docker
