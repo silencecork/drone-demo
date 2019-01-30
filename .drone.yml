@@ -17,7 +17,7 @@ pipeline:
     #auto_tag: true
     tags: 
       - latest
-      - "3.0"
+      - "4.0"
     dockerfile: Dockerfile
     secrets: [ docker_username, docker_password ] 
     when:
@@ -54,6 +54,7 @@ pipeline:
     volumes:
       - /Users/chih-tingliu/.ssh:/ssh
     script:
+      - sleep 30
       - cd /home/ec2-user/drone-demo/
       - echo "run docker"
       - docker-compose stop
