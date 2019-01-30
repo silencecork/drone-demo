@@ -14,9 +14,46 @@ pipeline:
     image: plugins/docker
     pull: true
     repo: liu71101/drone-demo
-    tags: [ latest, 1.0 ]
+    tags: [ latest, ${DRONE_COMMIT} ]
     dockerfile: Dockerfile
     secrets: [ docker_username, docker_password ] 
+    when:
+      branch: docker
+
+  scp:
+    image: appleboy/drone-scp
+    port: 22
+    secrets:
+      - source: host
+        target: scp_host
+      - source: user_name
+        target: scp_username
+      - source: key_path
+        target: scp_key_path
+    volumes:
+      - /Users/chih-tingliu/.ssh:/ssh
+    rm: true
+    target: /home/ec2-user/
+    source: 
+      - docker-compose.yml
+    when:
+      branch: docker
+
+  restart_docker:
+    image: appleboy/drone-ssh
+    secrets:
+      - source: host
+        target: ssh_host
+      - source: user_name
+        target: ssh_username
+      - source: key_path
+        target: ssh_key_path
+    volumes:
+      - /Users/chih-tingliu/.ssh:/ssh
+    script:
+      - echo "run docker"
+      - docker-compose restart
+      - exit 0
     when:
       branch: docker
 
