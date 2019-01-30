@@ -58,6 +58,7 @@ pipeline:
       - cd /home/ec2-user/drone-demo/
       - echo "run docker"
       - docker-compose stop
+      - docker-compose pull
       - docker-compose up -d --force-recreate --build
       - exit 0
     when:
