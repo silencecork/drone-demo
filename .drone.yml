@@ -14,7 +14,7 @@ pipeline:
     image: plugins/docker
     pull: true
     repo: liu71101/drone-demo
-    auto_tag: true
+    #auto_tag: true
     tags: 
       - latest
       - "2.0"
