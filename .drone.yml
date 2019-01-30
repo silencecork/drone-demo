@@ -17,7 +17,7 @@ pipeline:
     #auto_tag: true
     tags: 
       - latest
-      - "2.0"
+      - "3.0"
     dockerfile: Dockerfile
     secrets: [ docker_username, docker_password ] 
     when:
@@ -56,8 +56,8 @@ pipeline:
     script:
       - cd /home/ec2-user/drone-demo/
       - echo "run docker"
-      - docker-compose pull
-      - docker-compose restart
+      - docker-compose stop
+      - docker-compose up -d --force-recreate --build
       - exit 0
     when:
       branch: docker
