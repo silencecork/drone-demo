@@ -16,7 +16,7 @@ pipeline:
     repo: liu71101/drone-demo
     tags: [ latest, 1.0 ]
     dockerfile: dockerfile
-    secrets: [ docker_username, docker_password ]
+    secrets: [ docker_username, docker_password ] 
     when:
       branch: docker
 
