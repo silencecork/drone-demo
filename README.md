@@ -95,7 +95,19 @@ install:
 </code></pre>
 以跟主機相同的node環境的docker進行安裝，並使用<a href="https://mochajs.org">mocha</a> 做測試
 
-#### 第二步：SCP檔案到遠端
+#### 第二步：編譯docker image
+使用<a href="https://github.com/drone-plugins/drone-docker">plugin/docker</a>
+<p>簡單說明如下：</p>
+
+*  repo：要上傳docker image的位置
+*  username：登入docker image repo的帳號
+    *  對應secret：docker_username
+*  password：登入docker image repo的密碼
+    *  對應secret：docker_password
+*  dockerfile：要編譯image使用的Dockerfile路徑，e.g. docker-files/Dockerfile
+
+
+#### 第三步：SCP檔案到遠端
 使用<a href="https://github.com/appleboy/drone-scp">appleboy/drone-scp</a><br>
 <br>登入用username需要從secret mapping到scp_username
 <br>ssh key要mapping到scp_key_path，且記得路徑指的是在drone-scp這docker中的路徑，且這key要使用不用輸入passphrase的
@@ -104,10 +116,10 @@ install:
 <code>ssh-keygen -p -f ~/.ssh/id_dsa</code>
 </pre>
 
-#### 第三步：登入遠端主機進行設定
+#### 第四步：登入遠端主機進行設定
 使用<a href="https://github.com/appleboy/drone-ssh">appleboy/drone-ssh</a><br>
 <br>ssh key需要從secret mapping到ssh_key_path
 
-#### 第四步：通知結果
+#### 第五步：通知結果
 使用<a href="https://github.com/drone-plugins/drone-slack">plugins/slack</a><br>
 <br>通知slack的位置可以使用secret - slack_webhook or webhook
